@@ -1,15 +1,16 @@
-import { React,  useContext } from 'react';
+import { React, useContext } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, Switch, toggleSwitch } from 'react-native';
-import { ThemeContext }  from '../context/ThemeContext';
-import CustomButton from '../components/CustomButton';
+import { ThemeContext } from '../context/ThemeContext';
+// import CustomButton from '../components/CustomButton';
 
 const Settings = () => {
-  const { theme, toggleTheme, isEnabled,  toggleSwitch  } = useContext(ThemeContext);
+  const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+  // const isEnabled = theme === darkTheme;
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-       <View style={styles.headerContainer}>
-        <Text style={[styles.settingsText, {color: theme.colors.text}]}>Settings</Text>
+    <View style={[styles.container1, { backgroundColor: theme.colors.background }]}>
+      <View style={styles.headerContainer}>
+        <Text style={[styles.settingsText, { color: theme.colors.text }]}>Settings</Text>
       </View>
       <ScrollView>
         <View style={styles.textContainer}>
@@ -38,8 +39,8 @@ const Settings = () => {
         </View>
         <View style={styles.line} />
         <View style={styles.textContainer}>
-          <Text style={[styles.boldText, {color: theme.colors.text}]}>Theme</Text>
-          <Switch onValueChange={toggleSwitch} value={isEnabled} />
+          <Text style={[styles.boldText, { color: theme.colors.text }]}>Theme</Text>
+          <Switch onValueChange={toggleTheme} value={isDarkMode} />
         </View>
       </ScrollView>
     </View>
@@ -47,7 +48,7 @@ const Settings = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container1: {
     flex: 1,
     paddingLeft: 16,
     paddingRight: 16,
@@ -86,17 +87,8 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#000',
     marginVertical: 10,
+
   },
-  footerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  footerItems1: {
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  });
+});
 
 export default Settings;

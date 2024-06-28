@@ -7,23 +7,23 @@ const Home = () => {
 
   const transactions = [
     { id: '1', image: require('../image/assets/apple.png'), title: 'Apple', subtitle: 'Entertainment', amount: '-$200' },
-    { id: '2', image: require('../image/assets/spotify.png'), title: 'Spotify', subtitle: 'Music', amount: '-$200' },
-    { id: '3', image: require('../image/assets/moneyTransfer.png'), title: 'Money Transfer', subtitle: 'Transactions', amount: '$400' },
-    { id: '4', image: require('../image/assets/grocery.png'), title: 'Grocery', subtitle: 'Shopping', amount: '-$200' },
+    { id: '2', image: require('../image/assets/spotify.png'), title: 'Spotify', subtitle: 'Music', amount: '-$20' },
+    { id: '3', image: require('../image/assets/moneyTransfer.png'), title: 'Money Transfer', subtitle: 'Transactions', amount: '$88' },
+    { id: '4', image: require('../image/assets/grocery.png'), title: 'Grocery', subtitle: 'Shopping', amount: '-$40' },
   ];
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.headerContainer}>
         <View style={styles.profileContainer}>
-          <Image source={require('../image/assets/profile.png')} style={styles.image} />
+          <Image source={require('../image/assets/profile.png')} style={styles.profileImage} />
           <View>
             <Text style={{ color: theme.colors.text }}>Welcome back, </Text>
-            <Text style={[styles.profileBold, { color: theme.colors.text }]}>John Doe</Text>
+            <Text style={[styles.profileBold, { color: theme.colors.text }]}>Mr. Handson</Text>
           </View>
         </View>
-        <Image source={require('../image/assets/search.png')} style={styles.image} />
-      </View>
+        <Image source={require('../image/assets/search.png')} style={styles.searchImage} />
+        </View>
       <View>
         <Image source={require('../image/assets/Card.png')} style={styles.cardImage} />
       </View>
@@ -47,28 +47,28 @@ const Home = () => {
       </View>
       <View style={styles.textContainer}>
         <Text style={{ color: theme.colors.text }}>Transactions</Text>
-        <Text style={[styles.blueText, { color: theme.colors.text }]}>See All</Text>
+        <Text style={[styles.blueText, ]}>See All</Text>
       </View>
       
       <FlatList
-        // data={transactions}
-        // keyExtractor={(item) => item.id}
-        // renderItem={({ item }) => (
-        //   <View style={styles.flatContainer}>
-        //     <View style={styles.imageAndText}>
-        //       <Image source={item.image} style={styles.transactionImage} />
-        //       <View>
-        //         <Text style={[styles.text, { color: theme.colors.text }]}>{item.title}</Text>
-        //         <Text style={{ color: theme.colors.subtext }}>{item.subtitle}</Text> {/* Assuming you have a subtext color */}
-        //       </View>
-        //     </View>
-        //     <View>
-        //       <Text style={item.amount.startsWith('-') ? styles.redText : styles.blueText}>
-        //         {item.amount}
-        //       </Text>
-        //     </View>
-        //   </View>
-        // )}
+        data={transactions}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.flatContainer}>
+            <View style={styles.imageAndText}>
+              <Image source={item.image} style={styles.transactionImage} />
+              <View>
+                <Text style={[styles.text, {color: theme.colors.text}]}>{item.title}</Text>
+                <Text >{item.subtitle}</Text>
+              </View>
+            </View>
+            <View>
+              <Text style={item.amount.startsWith('-') ? styles.redText : styles.plusText}>
+                {item.amount}
+              </Text>
+            </View>
+          </View>
+        )}
       />
     </View>
   );
@@ -79,31 +79,39 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
   },
   headerContainer: {
-    marginTop: 30,
+    marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   profileContainer: {
     flexDirection: 'row',
   },
-  image: {
-    width: 55,
-    height: 55,
-    marginRight: 20,
+  profileImage:{
+    width: 50,
+    height: 50,
+    marginRight: 15,
     borderRadius: 10,
   },
+  searchImage: {
+    width: 50,
+    height: 50,
+    marginRight: 15,
+    borderRadius: 10,
+  },
+
   profileBold: {
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 5,
   },
   cardImage: {
-    width: '100%',
-    height: undefined,
-    aspectRatio: 1.5,
+    width: 330,
+    height: 220,
+    marginLeft: 0,
+    aspectRatio: 1.6,
     resizeMode: 'cover',
     marginTop: 30,
     borderRadius: 15,
@@ -118,6 +126,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  
   },
   textContainer: {
     flexDirection: 'row',
@@ -125,29 +134,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
   },
-  blueText: {
-    color: 'blue',
+  plusText: {
+    color: 'green',
   },
   redText: {
     color: 'red',
+  },
+  blueText: {
+    color: 'blue',
   },
   flatContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 20,
+    marginLeft: 4,
+    marginRight:4,
   },
   imageAndText: {
     flexDirection: 'row',
   },
   transactionImage: {
-    width: 45,
-    height: 45,
-    marginRight: 20,
+   
+    width: 35,
+    height: 35,
+    marginRight: 15,
     borderRadius: 10,
   },
-  // text: {
-  //   fontWeight: 'bold',
-  //   marginBottom: 10,
-  // },
+
 });
